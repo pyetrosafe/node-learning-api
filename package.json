@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "//watch": "webpack --watch --progress --colors --config webpack.conf.js",
+    "//dev": "webpack --progress --colors --config webpack.conf.js",
+    "//prod": "NODE_ENV=production webpack -p --config webpack.conf.js",
+    "start": "node --watch src/index.js",
+    "dev": "node --watch src/server.js",
+    "devmem": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3"
+  }
+}

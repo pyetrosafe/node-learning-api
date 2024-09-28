@@ -1,0 +1,50 @@
+services:
+
+  node:
+    image: "node:20.17.0-slim"
+    user: "node"
+    working_dir: /home/node/app
+    container_name: nodejs-api-node
+    restart: unless-stopped
+    tty: true
+    # environment:
+    #   - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "8081"
+    ports: # use if it is necessary to expose the container to the host machine
+      - "8001:8001"
+    command: "npm run dev"
+    networks:
+      - app-network-nodejs-api
+    depends_on:
+      - db
+
+  # Postgres
+  db:
+    image: postgres
+    container_name: nodejs-api-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespass
+      POSTGRES_DB: nodejs_api
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - dbdata:/var/lib/postgresql/data/
+    networks:
+      - app-network-nodejs-api
+
+# Docker Networks
+networks:
+  app-network-nodejs-api:
+    driver: bridge
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local
