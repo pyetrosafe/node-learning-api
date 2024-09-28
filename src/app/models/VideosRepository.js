@@ -1,7 +1,7 @@
 import { Op } from 'sequelize';
-import Videos from './videos.js';
+import Videos from './entities/Videos.js';
 
-export class DatabasePostgres {
+export class VideosRepository {
 
     async list(search = {}) {
 
@@ -46,5 +46,4 @@ export class DatabasePostgres {
     async delete(id) {
         const video = await Videos.destroy({ where: { id: id }});
     }
-
 }

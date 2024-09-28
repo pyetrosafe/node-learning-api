@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import sequelize from './sequelize.js';
+import db from '../../../packages/database/Connection.js';
 
 class Videos extends Model {};
 
@@ -21,7 +21,7 @@ Videos.init(
         },
     },
     {
-        sequelize: sequelize,
+        sequelize: db,
         modelName: 'videos'
     }
 );
